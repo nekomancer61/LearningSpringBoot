@@ -1,0 +1,54 @@
+LIBRARY MANAGEMENT SYSTEM DATABASE DESIGN
+	
+	TABLE Publishers:
+		- ID int PRIMARY KEY
+		- Name nvarchar(50)
+		
+	TABLE Authors:
+		- ID int PRIMARY KEY
+		- Name nvarchar(50)
+		
+	TABLE Books:
+		- ID int PRIMARY KEY
+		- Title nvarchar(50)
+		- PublisherId FOREIGN KEY REFERENCE Publisher('ID')
+		- AuthorId FOREIGN KEY REFERENCE Author('ID')
+		- NumberOfPages int
+		- NumberOfCopies int
+		- Price decimal
+		- ImportDate Datetime
+		- Row int
+		- Column int
+		- CategoryId FOREIGN KEY REFERENCE Category('ID')
+		
+	TABLE Category
+		- ID int PRIMARY KEY
+		- CategoryName nvarchar(50)
+		
+	TABLE Student
+		- ID nvarchar(50) int PRIMARY KEY
+		- FirstName nvarchar(50)
+		- LastName nvarchar(50)
+		- MajorId FOREIGN KEY REFERENCE Major('ID')
+		- PhoneNumber nvarchar(10)
+		- Email nvarchar(50)
+		- StudentIdExpiredDate Datetime
+		- ClassId FOREIGN KEY REFERENCE Class('ID')
+		
+	TABLE Class
+		- ID int PRIMARY KEY
+		- Name nvarchar(10)
+	
+	TABLE Major
+		- ID int PRIMARY KEY
+		- Name nvarchar(50)
+	
+	Table BorrowTicket
+		- ID int PRIMARY KEY
+		- StudentId nvarchar(50) FOREIGN KEY REFERENCE Student('ID')
+		- BorrowDate Datetime
+	
+	Table BorrowDetail
+		- BorrowTicketId int FOREIGN KEY REFERENCE BorrowTicket('ID')
+		- BookId int FOREIGN KEY REFERENCE Books('ID')
+		- Note nvarchar(50)
