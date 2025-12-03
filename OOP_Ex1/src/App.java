@@ -28,7 +28,7 @@ public class App {
                     break;
                 }
 
-                case 3 : todoList.toString();
+                case 3 : todoList.display(); break;
                 case 4 : return;
                 default : menu.displayOption();
             }

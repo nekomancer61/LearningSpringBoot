@@ -6,7 +6,11 @@ public class TodoList {
         TodoList.length=0;
         list = new Entry[0];
     }
-
+    public void display(){
+        for (Entry entry : list) {
+            System.out.println(entry.toString());
+        }
+    }
     public void showTodoList(){
         sortList();
         for (Entry entry : list) {

@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 public class Menu {
+    Scanner sc = new Scanner(System.in);
     public Menu(){}
     public void displayOption(){
         System.out.println("=====To do=====");
@@ -10,7 +11,7 @@ public class Menu {
         System.out.println("4. Exit");
     }
     public int getOptionInput(){
-        Scanner sc = new Scanner(System.in);
+        
         int choice = 0;
         while (true){
             System.out.print("Your choice: ");
@@ -22,7 +23,6 @@ public class Menu {
             if (choice<=4 && choice >=1) break;
             System.out.println("1, 2, 3 or 4.");
         }
-        sc.close();
         
         return choice;
     }
@@ -39,7 +39,6 @@ public class Menu {
             }
             if (priority>=0) break;
         }
-        sc.close();
         return priority;
     }
 
@@ -47,7 +46,6 @@ public class Menu {
         Scanner sc = new Scanner(System.in);
         System.out.println("Note: ");
         String note = sc.nextLine();
-        sc.close();
         return note;
     }
 
@@ -62,12 +60,10 @@ public class Menu {
             }
             
             String input = sc.nextLine().toLowerCase();
-            if (input == "y" ) {
-                sc.close();
+            if (input.equals("y" )) {
                 return true;
             }
-            if (input == "n" ) {
-                sc.close();
+            if (input.equals("n" )) {
                 return false;
             }
         }
@@ -86,7 +82,6 @@ public class Menu {
             }
             if (ID >= 0) break;
         }
-        sc.close();
         return ID;
     }
     public void displayFailedToDelete(){
