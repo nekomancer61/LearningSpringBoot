@@ -29,6 +29,7 @@ public class CustomerServlet extends HttpServlet {
                 updateCustomer(request, response);
                 break;
             case "delete":
+                deleteCustomer(request, response);
                 break;
             default:
                 break;
@@ -49,8 +50,10 @@ public class CustomerServlet extends HttpServlet {
                 showEditForm(request, response);
                 break;
             case "delete":
+                showDeleteForm(request, response);
                 break;
             case "view":
+                viewCustomer(request, response);
                 break;
             default:
                 listCustomers(request, response);
@@ -173,6 +176,24 @@ public class CustomerServlet extends HttpServlet {
             request.setAttribute("customer", customer);
             dispatcher = request.getRequestDispatcher("customer/view.jsp");
         }
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void createCustomer(HttpServletRequest request, HttpServletResponse response) {
+        String name = request.getParameter("name");
+        String email = request.getParameter("email");
+        String address = request.getParameter("address");
+        int id = (int) (Math.random() * 10000);
+        Customer customer = new Customer(id, name, email, address);
+        this.customerService.save(customer);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("customer/create.jsp");
+        request.setAttribute("message", "New customer was created");
         try {
             dispatcher.forward(request, response);
         } catch (ServletException e) {
