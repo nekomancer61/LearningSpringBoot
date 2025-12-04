@@ -2,17 +2,18 @@ create database if not exists LibraryManagementSystem;
 
 Use LibraryManagementSystem;
 
+drop table if exists BorrowDetails;
+drop table if exists BorrowTickets;
+
 drop table if exists Books;
 drop table if exists Publishers;
 drop table if exists Authors;
-
 drop table if exists Categories;
 drop table if exists Students;
 drop table if exists Classes;
 drop table if exists Majors;
 
-drop table if exists BorrowTickets;
-drop table if exists BorrowDetails;
+
 
 create table Publishers (
 	ID int not null,
@@ -72,7 +73,7 @@ create table Students (
     MajorId int not null,
     PhoneNumber varchar(10) not null,
     Email varchar(50) not null,
-    StudentIdExprireDate date default null,
+    StudentIdExpireDate date default null,
     ClassId int not null,
     primary key (ID),
     foreign key (MajorId) references Majors (ID) on delete cascade,
@@ -87,14 +88,14 @@ create table BorrowTickets (
     foreign key (StudentId) references Students (ID)
 );
 
-create table BorrowDetail (
+create table BorrowDetails (
 	BorrowTicketId int,
     BookId int,
     note varchar(70),
     foreign key (BorrowTicketId) references BorrowTickets (ID),
     
     primary key (BorrowTicketId, BookId),
-    foreign key (BookId) references Books (ID)
+    foreign key (BookId) references Books (ID) on delete cascade
 	
 );
 
