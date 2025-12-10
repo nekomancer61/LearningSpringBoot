@@ -1,0 +1,52 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '4.0.0'
+	id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.blueco'
+version = '0.0.1-SNAPSHOT'
+description = 'Demo project for Spring Boot'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	implementation 'javax.servlet:servlet-api'
+	implementation 'org.springframework:spring-core'
+	implementation 'org.springframework: spring-context'
+	implementation 'org.springframework:spring-beans'
+	implementation 'org.springframework: spring-web'
+	implementation 'org.hibernate:hibernate-core'
+	implementation 'org.hibernate:hibernate-entitymanager'
+	implementation 'org.springframework:spring-orm'
+	implementation 'org.springframework:spring-webmvc'
+	implementation 'org.thymeleaf:thymeleaf-spring4'
+	implementation 'mysql:mysql-connector-java:8.0.11'
+	implementation 'org.springframework.data:spring-data-jpa'
+	implementation 'org.springframework.util:ConcurrentLruCache'
+}
+
+    bootJar 
+    {
+        enabled = false
+    }
+
+    jar 
+    {
+        enabled = true
+    }
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

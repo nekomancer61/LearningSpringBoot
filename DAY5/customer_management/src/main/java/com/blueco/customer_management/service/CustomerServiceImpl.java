@@ -1,0 +1,34 @@
+package com.blueco.customer_management.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.blueco.customer_management.model.Customer;
+import com.blueco.customer_management.repository.CustomerRepository;
+
+public class CustomerServiceImpl implements CustomerService{
+    @Autowired
+    private CustomerRepository customerRepository;
+
+    @Override
+    public List<Customer> findAll() {
+        return customerRepository.findAll();    
+    }
+
+    @Override
+    public Customer findById(Long id) {
+        return customerRepository.findById(id);
+    }
+
+    @Override
+    public void save(Customer customer) {
+        customerRepository.save(customer);
+    }
+
+    @Override
+    public void remove(Long id) {
+        customerRepository.remove(id);
+    }
+    
+}
